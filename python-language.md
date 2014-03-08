@@ -1,42 +1,35 @@
 Python Language
 ===
 
----
 Object Model
 ---
 
-Phases
+###Phases
 
 - class definition 
-
 - class object 
-
 - metaclass instrumentation 
-
 - instantiation
 
-
-important attributes
+###important attributes
 
 - `cls.__new__(cls)`
-
 - `cls.__init__(self)`
 
 
-Instantiation Process
+###Instantiation Process
 ```python
 new_obj = cls.__new__(cls, *args)
 new_obj = cls.__init__(new_obj, *args)
 ```
 
----
 Operators
 ---
 
 `obj.__eq__`
 `obj.`
 
----
+
 Decorator
 ---
 
@@ -59,10 +52,9 @@ func = wrapper(func)
 - function registration e.g. Flask
 - preprocess and after-process
 
----
+
 Metaclass
 ---
 
----
 Context Manager
 ---

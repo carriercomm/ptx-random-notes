@@ -1,13 +1,7 @@
 JavaScript Language
 ===
 
-JavaScript General
----
-
-
-
-Lexical Structure
----
+###Lexical Structure
 
 Character Set
 JavaScript uses Unicode.
@@ -29,18 +23,17 @@ Multi-Line Comment  /* Multi-Line Comment */
 
 
 
-=====================================================================================================
 Object Model
-=====================================================================================================
+===
 
-Object Category
-  -- Native Object: Objects defined by JavaScript
-  -- Host Object: Objects defined by Browser
-  -- User-defined Object
+###Object Category
 
---------------------------------------------------------------------------
-Object Creation
---------------------------------------------------------------------------
+- Native Object: Objects defined by JavaScript
+- Host Object: Objects defined by Browser
+- User-defined Object
+
+
+###Object Creation
 
 Object Literals  
   -- [syntax] var object = { name: value, name: value };
@@ -53,9 +46,8 @@ Object.create()
   -- [syntax] var object = Object.create(myPrototype);
   -- object.prototype === myPrototype.
 
---------------------------------------------------------------------------
-Constructor
---------------------------------------------------------------------------
+
+###Constructor
 
 [definition] Constructor is function designed to be used with the keyword [new] 
 
@@ -68,9 +60,8 @@ actual process of [new Constructor(param)]
   -- constructor prcedure with [this] and [param]
   -- return this
 
---------------------------------------------------------------------------
-Prototypal Inheritance
---------------------------------------------------------------------------
+
+###Prototype Inheritance
 
 Prototype is a implicit link from an object to anther object
 It is not copied into the new object, but linked to it.
@@ -80,9 +71,7 @@ recursive attribute lookup
   -- else, recursively look up the attribute in object's prototype 
 
 
---------------------------------------------------------------------------
-Object Attribute
---------------------------------------------------------------------------
+###Object Attribute
 
 Prototype
 Object.getPrototypeOf(myObject);
@@ -93,9 +82,7 @@ Specifies if a new property can be added to the object.
 By default every object is extensible.
 constructor
 
---------------------------------------------------------------------------
-Property Attribute
---------------------------------------------------------------------------
+###Property Attribute
 
 In ECMAScript 3 the property attributes are immutable, all writable enumerable and configurable.
 Four property attributes of data property
@@ -108,9 +95,7 @@ Return a object contains the four property attributes as its properties.
 Object.defineProperty(myObject, “attribute-name”, attributeSet); 
 Omitted attributes are default to be undefined and false.
 
---------------------------------------------------------------------------
-Property
---------------------------------------------------------------------------
+###Property
 
 Property Type
 Data property
@@ -122,9 +107,9 @@ Object.property
 Object[“property”]
 Interpreter will search the property in the list of the object’s own properties, if not found, continue search in its prototype object, usually stops at Object.prototype.
 
-=====================================================================================================
+
 Function
-=====================================================================================================
+===
 
 Functions are objects.
 
@@ -146,9 +131,9 @@ because if forgot [new], this will mean global object therefore may cause disast
 
 for function object, its prototype is a new object contains a property called constructor witch is a reference to the function object itself.
 
-=====================================================================================================
+
 Javascript Execution Timeline
-=====================================================================================================
+===
 
 Javascript Type
   -- Synchronous (default) 
@@ -157,9 +142,7 @@ Javascript Type
   -- Deferred <script defer src=”url”></script>
      Run after the document is fully loaded and ready to be manipulated.
 
---------------------------------------------------------------------------
-Client-Side JavaScript Timeline
---------------------------------------------------------------------------
+###Client-Side JavaScript Timeline
 
 Synchronous Script Execution Phase
   document.readyState = “loading”, readystatechange event
@@ -273,78 +256,18 @@ Frames
 frameElement.contentWindow == frameWindowObject
 frameWindowObjet.frameElement == frameElement
 
-=====================================================================================================
-Forms
-=====================================================================================================
 
-Form Object
 
-Form Event Handler
-
-onsubmit
-
-onreset
-
-Form Attributes
-
-Input Object
-
-Common Attribute
-
-type Read-Only
-
-form : the container form object
-
-name Read-Only
-
-value: Read/Write
-
-Toggle Buttons (Radio & Checkbox)
-
-Attribute: checked
-
-Select and Option
-
-DOM Access
-
-=====================================================================================================
+===
 Windows Object
-=====================================================================================================
+===
 
 Timer
 
 
 
-
-=====================================================================================================
-Script CSS
-=====================================================================================================
-
-CSS-JavaScript Name Convert Convention
-Hyphen: part1-part2 -> part1Part2
-Remove hyphen and capitalize the immediately following letter.
-Reversed Keywords: name -> cssName
-Add prefix “css” and capitalize the first letter.
-Modify CSS
-Modify Element CSS
-element.style.cssName = “value”;
-Modify CSS by Class
-element.className=”class”;
-Modify Style As Stylesheet String
-element.setAttribute(“style”, StylesheetString);
-element.style.cssText = StylesheetString;
-Add Stylesheet Element Using DOM
-Query CSS
-Get Style as CSSStyleDeclaration Object
-window.getComputedStyle(element,[null|”pseudoelement”]);
-returns a read only CSSStyleDeclaration object.
-Get Style as Stylesheet String
-element.getAttribute(“style”);
-element.style.cssText;
-
-=====================================================================================================
 Events
-=====================================================================================================
+===
 
 Event Type
   -- Form Events
@@ -352,9 +275,9 @@ Event Type
   -- Mouse Event
   -- Key Events
 
---------------------------------------------------------------------------
-Event Handler Register
---------------------------------------------------------------------------
+
+###Event Handler Register
+
 
 element.onEvent = EventHandlerFunction;
      Use element property can register only one handler function to an event.
@@ -364,9 +287,7 @@ element.addEventListener(“event”,HandlerFunction,[true|false]);
      Enable to register several handlers to one event. Invoke in the order of register.
      Repeat registering with same arguments is equivalent to doing nothing.
 
---------------------------------------------------------------------------
-Event Handler Invocation
---------------------------------------------------------------------------
+###Event Handler Invocation
 
 Event Handler Argument
   -- Event handlers are invoked with an event object as their single argument.
@@ -377,9 +298,8 @@ Event Handler Context
 Event Handler Invoke Order
   -- First invoke handler registered by element property, then by the order of register.
 
---------------------------------------------------------------------------
-Event Propagation
---------------------------------------------------------------------------
+
+###Event Propagation
 
 First Phase: Event Capturing
   -- Inverse of event bubbling, invoked from window, document to target’s parent.
@@ -392,9 +312,9 @@ Third Phase: Event Bubbling
   -- Invoked from target’s handler to windows object along the DOM tree.
   -- Have several exceptions, some event do not bubble.
 
-=====================================================================================================
+
 Regular Expression
-=====================================================================================================
+===
 
 Create Regular Expression
 
@@ -463,44 +383,3 @@ Methods of RegExp Object
 pattern.exec()
 
 pattern.test()
-
-
-=====================================================================================================
-AJAX
-=====================================================================================================
-
-AJAX stands for Asynchronous JavaScript and XML.
-HTTP Request Components
-The HTTP request method (i.e. verb).
-The URL being requested.
-An optional set of request headers (may include authentication information).
-An optional request body.
-HTTP Response Components 
-A numeric and textual status code indicates the success or failure of request.
-A set of response headers.
-The response body.
-XMLHttpRequest Procedure
-request = new XMLHttpRequest();
-request.open(“[GET|POST]”,”URL”,”[true|false]”);
-request.setRequestHeader();
-request.send([null|request-body]);
-XMLHttpRequest Object
-IE 5 IE 6 do not support XMLHttpRequest Object, use ActiveX Object instead.
-Methods:
-request.open(method, url, asynchronous);
-method=”[GET|POST]”;
-url=”Location on the server”;
-asynchronous=[true|false];(Asynchronous or Synchronous)
-Synchronous: Script won’t continue until response arrives.
-Asynchronous: Event driven mechanism.
-request.onreadystatechange = handler;
-variable.setRequestHeader(header, value);
-variable.send([null|string|DOM]);
-null for GET method, string or DOM for POST method.
-Response
-request.responseXML: XML DOM (Parsed)
-request.responseText: String
-readyState Property
-readyState holds the status of the XMLHttpRequest object.
-Event onreadystatechange triggers when readyState changes.
-Successed: (request.readyState == 4 && request.status == 200)
