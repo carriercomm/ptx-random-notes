@@ -5,12 +5,16 @@
 In a set of samples containing `inlier`(valid) and `outlier`(noise),  RANSAC attempts to select a inlier-only sample set by random selection within a finite number of trials.
 
 ###assertions
+
 **sample set is inlier only**:  if the percentage of samples that tolerate this estimate model is above threshold
+
 **chance of succeed**: `1-(1-threshold^n)^trials`
 
 
 ###example
+
 two images have a set of feature matches, some of the matches are valid, some of them are noise
+
 we need to reject the outliers so that `8-point-algorithm` and `bundle adjustment` can be applied to estimate camera parameters
 
 
@@ -42,5 +46,7 @@ we need to reject the outliers so that `8-point-algorithm` and `bundle adjustmen
 ---
 
 ####references
+
 [Wikipedia:RANSAC](http://en.wikipedia.org/wiki/RANSAC)
+
 [Overview of RANSAC Algorithm](http://www.cse.yorku.ca/~kosta/CompVis_Notes/ransac.pdf)
