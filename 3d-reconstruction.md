@@ -19,6 +19,13 @@ dense point mesh
 surface
 
 
+Concepts
+---
+Fundamental Matrix
+Homography
+ANN kd-tree
+
+
 Relations and Constrains
 ---
 
