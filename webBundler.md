@@ -12,3 +12,25 @@ for each image pair
 
 Concepts
 ---
+
+ANN kd-tree
+every leaf is about same distance to the root
+
+Levenberg-Marquardt algorithm
+
+
+8-point-algorithm
+
+sparse bundle adjustment
+
+Data
+---
+
+**Camera Parameters**
+
+ - focal
+ - 2 * radial distortion
+
+
+
+
