@@ -18,7 +18,7 @@ a two-view relation consists of
 
 a two-view relation forms a **epipolar constraint**
 
-the epipolar constraint can be used in finding coordinates, verification, parameter refinement (bundle ) .etc
+the epipolar constraint can be used in finding coordinates, verification, parameter refinement (bundle adjustment) .etc
 
 concepts
 ---
