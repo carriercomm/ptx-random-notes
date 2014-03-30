@@ -8,8 +8,10 @@ JavaScript uses Unicode.
 JavaScript is case-sensitive.
 
 Comment
-Single Line Comment  //Single Line Comment
-Multi-Line Comment  /* Multi-Line Comment */
+```javascript
+//Single Line Comment
+/* Multi-Line Comment */
+```
 
 ###Literals
 
@@ -21,6 +23,20 @@ Multi-Line Comment  /* Multi-Line Comment */
 - **Expressions**
 - **Identifiers** and **Reserved Words** -- Begin with[ _|letter|$] (Numbers are not allowed as first character)
 
+
+Novel Features
+===
+
+SIMD operations -- CPU SIMD API
+WebGL
+WebWorker -- multi-thread -- detail in my WebWorkers note
+
+
+references
+
+ - [JavaScript gains support for SIMD](http://www.2ality.com/2013/12/simd-js.html)
+ - [Closing the Web Platform Gap with Native](http://cdn.oreillystatic.com/en/assets/1/event/106/Closing%20the%20Web%20Platform%20Gap%20with%20Native%20%20Presentation.pdf)
+ - [Bringing SIMD to JavaScript](https://01.org/blogs/tlcounts/2014/bringing-simd-javascript)
 
 
 Object Model
@@ -131,7 +147,37 @@ because if forgot [new], this will mean global object therefore may cause disast
 
 for function object, its prototype is a new object contains a property called constructor witch is a reference to the function object itself.
 
+Regular Expression
+===
 
+####Create Regular Expression
+```javascript
+var pattern = /pattern/;
+var pattern = new RegExp(“pattern”, ”flags”);
+```
+
+####Flags
+
+ - g : preform a global matching (i.e. return all matches within the searched string)
+ - i : preform case-insensitive matching
+ - m : multiline mode
+
+####Methods of String
+```javascript
+string.search();
+// Return the index of the first match, return -1 if no match.
+string.replace(/pattern/, string);
+// Replace first/all matched pattern to the string. 
+string.match();
+// return the matched string, global search returns all matched string. Always return an array.
+string.split();
+// return an array of the split string separated by the pattern.
+```
+####Methods of RegExp Object
+```javascript
+pattern.exec()
+pattern.test()
+```
 Javascript Execution Timeline
 ===
 
@@ -162,17 +208,74 @@ Asynchronous Event-Driven Script Execution Phase
   Event handlers are invoked asynchronously in response to user events.
 
 
-=====================================================================================================
 Client-Side Storage
-=====================================================================================================
+===
 
 Cookie
 Write Cookie
 Read Cookie
 
-=====================================================================================================
-HTML XML DOM
-=====================================================================================================
+
+Windows Object
+===
+
+Timer
+
+
+
+Events
+===
+
+Event Type
+  -- Form Events
+  -- Window Events
+  -- Mouse Event
+  -- Key Events
+
+
+###Event Handler Register
+
+
+element.onEvent = EventHandlerFunction;
+     Use element property can register only one handler function to an event.
+
+element.addEventListener(“event”,HandlerFunction,[true|false]);
+     element.removeEventListener(“event”,HandlerFunction,[true|false]);
+     Enable to register several handlers to one event. Invoke in the order of register.
+     Repeat registering with same arguments is equivalent to doing nothing.
+
+###Event Handler Invocation
+
+Event Handler Argument
+  -- Event handlers are invoked with an event object as their single argument.
+
+Event Handler Context
+  -- [this] variable in the event handler means the event target.
+
+Event Handler Invoke Order
+  -- First invoke handler registered by element property, then by the order of register.
+
+
+###Event Propagation
+
+First Phase: Event Capturing
+  -- Inverse of event bubbling, invoked from window, document to target’s parent.
+  -- Target’s event capturing handler is not invoked.
+  -- Registered by element.addEventListener(“event”, HandlerFunction, true);
+
+Second Phase: Target Event Handler Invocation
+
+Third Phase: Event Bubbling
+  -- Invoked from target’s handler to windows object along the DOM tree.
+  -- Have several exceptions, some event do not bubble.
+
+
+
+
+
+---
+HTML XML DOM (!Todo)
+===
 
 Node
 Document
@@ -255,131 +358,3 @@ document.body, document.head, document.title, document.doctype
 Frames
 frameElement.contentWindow == frameWindowObject
 frameWindowObjet.frameElement == frameElement
-
-
-
-===
-Windows Object
-===
-
-Timer
-
-
-
-Events
-===
-
-Event Type
-  -- Form Events
-  -- Window Events
-  -- Mouse Event
-  -- Key Events
-
-
-###Event Handler Register
-
-
-element.onEvent = EventHandlerFunction;
-     Use element property can register only one handler function to an event.
-
-element.addEventListener(“event”,HandlerFunction,[true|false]);
-     element.removeEventListener(“event”,HandlerFunction,[true|false]);
-     Enable to register several handlers to one event. Invoke in the order of register.
-     Repeat registering with same arguments is equivalent to doing nothing.
-
-###Event Handler Invocation
-
-Event Handler Argument
-  -- Event handlers are invoked with an event object as their single argument.
-
-Event Handler Context
-  -- [this] variable in the event handler means the event target.
-
-Event Handler Invoke Order
-  -- First invoke handler registered by element property, then by the order of register.
-
-
-###Event Propagation
-
-First Phase: Event Capturing
-  -- Inverse of event bubbling, invoked from window, document to target’s parent.
-  -- Target’s event capturing handler is not invoked.
-  -- Registered by element.addEventListener(“event”, HandlerFunction, true);
-
-Second Phase: Target Event Handler Invocation
-
-Third Phase: Event Bubbling
-  -- Invoked from target’s handler to windows object along the DOM tree.
-  -- Have several exceptions, some event do not bubble.
-
-
-Regular Expression
-===
-
-Create Regular Expression
-
-var pattern = /pattern/;
-
-var pattern = new RegExp(“pattern”, ”flags”);
-
-Regular Expression Grammar
-
-Literal Character
-
-Literal Punctuations: ^ $ . * + ? = ! : | \ / ( ) [ ] { } 
-
-When use punctuations as literals, precede them with a “\”
-
-Character Class
-
-[…] – Any character between the brackets [^…] - Otherwise
-
-\w - Any ASCII Character \W - Otherwise 
-
-\s – Any Unicode Whitespace Character \S – Otherwise  
-
-\d – Any ASCII Digit \D – Otherwise
-
-Repetition (of previous item)
-
-{n, m} – [n, m] {n,} – [n,+) {n} – exactly n times
-
-? – one or zero + – {1,} * – {0,}
-
-Match Position
-
-^ Beginning of the string/line $ End of the string/line
-
-(?=pattern) (?!pattern) after but not include is/isn’t the pattern
-
-Flags
-
-g : preform a global matching (i.e. return all matches within the searched string)
-
-i : preform case-insensitive matching
-
-m : multiline mode
-
-Methods of String
-
-string.search();
-
-Return the index of the first match, return -1 if no match.
-
-string.replace(/pattern/, string);
-
-Replace first/all matched pattern to the string. 
-
-string.match();
-
-return the matched string, global search returns all matched string. Always return an array.
-
-string.split();
-
-return an array of the split string separated by the pattern.
-
-Methods of RegExp Object
-
-pattern.exec()
-
-pattern.test()
